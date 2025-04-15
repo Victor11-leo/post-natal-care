@@ -10,9 +10,16 @@ const SubPost = () => {
     console.log(data);
     if (data == undefined) return null
   return (
-    <View>
-      <Text>{data.title}</Text>
-      <Text>{data.body}</Text>
+    <View className='bg-white flex-1'>
+      <View className='mt-5 px-5'>
+        <Text className='font-semibold text-lg capitalize'>{data.title}</Text>
+        <View className='mt-5'>
+          <Text className='tracking-wider leading-8'>{data.body}</Text>
+        </View>
+        <View>
+          
+        </View>
+      </View>
     </View>
   )
 }

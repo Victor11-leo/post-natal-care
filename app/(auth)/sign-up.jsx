@@ -17,14 +17,16 @@ export default function SignUpScreen() {
   const onSignUpPress = async () => {
     if (!isLoaded) return
 
-    console.log(emailAddress, password)
-
+    
     // Start sign-up process using email and password provided
+    const convertedName = name.replace(" ", "_");
+    console.log(emailAddress, password,convertedName)
+    
     try {
       await signUp.create({
         emailAddress,
         password,
-        firstName:name
+        username:convertedName
       })
 
       // Send user an email with verification code
@@ -69,52 +71,75 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
-        <TextInput
-          value={code}
-          placeholder="Enter your verification code"
-          onChangeText={(code) => setCode(code)}
-        />
-        <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
-        </TouchableOpacity>
-      </>
+      <View className='flex-1 h-screen  flex-col gap-2 items-center justify-center bg-white'>
+        <View className='mt-5 px-5 flex flex-col items-start justify-center  w-[80%]'>
+          <Text className='font-bold text-xl'>You're almost there</Text>
+          <Text className='font-semibold text-sm'>A haven to guide young mothers</Text>
+          <Text className='font-semibold text-lg mt-4 '>Verify your email</Text>
+          <View className='flex flex-col gap-4 w-full'>
+            <TextInput
+              value={code}
+              placeholder="Enter your verification code"
+              className='rounded-md border-2 border-slate-900 px-4 py-1.5'
+              onChangeText={(code) => setCode(code)}
+            />            
+          </View>
+          <TouchableOpacity 
+          className='bg-pink-700 rounded-md px-4 py-2 w-40 flex flex-row justify-center mt-5 mb-3'
+          onPress={onVerifyPress}>
+            <Text className='text-white font-semibold'>Verify</Text>
+          </TouchableOpacity>
+          <Link href="/" className='text-pink-500 font-semibold'>
+            <Text>Already verified?</Text>
+            <Text>Go Home</Text>
+          </Link>
+        </View>
+      </View>
     )
   }
 
   return (
-    <View>
-      <>
-        <Text>Sign up</Text>
-        <TextInput
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="Enter email"
-          onChangeText={(email) => setEmailAddress(email)}
-        />
-        <TextInput
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="Enter name"
-          onChangeText={(name) => setName(name)}
-        />
-        <TextInput
-          value={password}
-          placeholder="Enter password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-        <TouchableOpacity onPress={onSignUpPress}>
-          <Text>Continue</Text>
+    <View className='flex-1 flex-col items-center bg-white'>
+      <View className='mt-5 px-5 flex flex-col items-start justify-center h-full w-[80%]'>
+        <Text className='font-bold text-xl'>Welcome,to Post Natal Care</Text>
+        <Text className='font-semibold text-sm'>A haven to guide young mothers</Text>
+
+        <Text className='font-semibold text-lg mt-4'>Sign up</Text>
+        <View className='flex flex-col gap-4 w-full'>
+          <TextInput
+            autoCapitalize="none"
+            value={emailAddress}
+            placeholder="Enter email"
+            className='rounded-md border-2 border-slate-900 px-4 py-1.5'
+            onChangeText={(email) => setEmailAddress(email)}
+          />
+          <TextInput
+            autoCapitalize="none"
+            value={name}
+            placeholder="Enter name"
+            className='rounded-md border-2 border-slate-900 px-4 py-1.5'
+            onChangeText={(name) => setName(name)}
+          />
+          <TextInput
+            value={password}
+            placeholder="Enter password"
+            className='rounded-md border-2 border-slate-900 px-4 py-1.5'
+            secureTextEntry={false}
+            onChangeText={(password) => setPassword(password)}
+          />
+        </View>
+        <TouchableOpacity 
+        className='bg-pink-700 rounded-md px-4 py-2 w-40 flex flex-row justify-center mt-5 mb-3'
+        onPress={onSignUpPress}>
+          <Text className='text-white font-semibold'>Continue</Text>
         </TouchableOpacity>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-          <Text>Already have an account?</Text>
-          <Link href="/sign-in">
+          <Link href="/sign-in" className='text-pink-500 font-semibold'>
+            <Text>Already have an account?</Text>
             <Text>Sign in</Text>
           </Link>
         </View>
-      </>
+      </View>
     </View>
   )
 }

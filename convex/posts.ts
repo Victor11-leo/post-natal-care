@@ -16,6 +16,16 @@ export const createPost = mutation({
   },
 });
 
+export const getPostById = query({
+  args: {
+    id: v.id("posts")  
+},
+  handler: async (ctx, args) => {    
+    const tasks = await ctx.db.get(args.id);    
+    return tasks
+  },
+});
+
 export const getPosts = query({
   args: {},
   handler: async (ctx, args) => {    
