@@ -116,7 +116,7 @@ export default function SignUpScreen() {
           <TextInput
             autoCapitalize="none"
             value={name}
-            placeholder="Enter name"
+            placeholder="Enter username"
             className='rounded-md border-2 border-slate-900 px-4 py-1.5'
             onChangeText={(name) => setName(name)}
           />

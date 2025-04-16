@@ -1,4 +1,4 @@
-import { useAuth, useSignIn } from '@clerk/clerk-expo'
+import { useAuth, useSession, useSessionList, useSignIn } from '@clerk/clerk-expo'
 import { Link, Redirect, useRouter } from 'expo-router'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
@@ -7,30 +7,24 @@ import { useLocalCredentials } from '@clerk/clerk-expo/local-credentials'
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
   const { hasCredentials, setCredentials, authenticate,userOwnsCredentials, clearCredentials ,biometricType } = useLocalCredentials()
-  // clearCredentials()
   console.log(hasCredentials);
   const router = useRouter()
 
   const {isSignedIn,sessionId} = useAuth()
-    
-    if (isSignedIn) {
-        return <Redirect href={'/'} />
-    }
-    console.log(sessionId);
+  const {session} = useSession()
+  console.log(session);
+        
+    // console.log(isSignedIn);
 
   const [emailAddress, setEmailAddress] = React.useState('')
   const [password, setPassword] = React.useState('')
 
   // Handle the submission of the sign-in form
-  const onSignInPress = async () => {
+  const onSignInPress = async (useLocal) => {
     if (!isLoaded) return
 
     // Start the sign-in process using the email and password provided
-    try {
-      // const signInAttempt = await signIn.create({
-      //   identifier: emailAddress,
-      //   password,
-      // })
+    try {      
       const signInAttempt =
         hasCredentials && useLocal
           ? await authenticate()
@@ -59,6 +53,7 @@ export default function Page() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2))
+      console.log(err.message);
     }
   }
 
