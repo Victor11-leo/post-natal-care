@@ -7,8 +7,8 @@ import { api } from '../../convex/_generated/api';
 const SubPost = () => {
     const { id } = useLocalSearchParams();
     const data = useQuery(api.subpost.getSubPostsById,{id:id})
-    console.log(data);
     if (data == undefined) return null
+    console.log(data?.body);
   return (
     <View className='bg-white flex-1'>
       <View className='mt-5 px-5'>

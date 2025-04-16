@@ -8,7 +8,7 @@ const Card = (post) => {
     const {title,image,_id} = post.post    
   return (
     <Link href={`/posts/${_id}`} asChild>
-      <TouchableOpacity className="w-32 relative pl-5">
+      <TouchableOpacity className="w-[40%] relative pl-5">
         <View className='w-36 h-48 bg-slate-900 relative rounded-md '>
             <Image
             source={{uri:image}}

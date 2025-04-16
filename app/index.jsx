@@ -46,18 +46,21 @@ export default function Index() {
         <View className='mt-5'>
           <Text className='font-bold '>Articles</Text>          
 
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            className="mb-4 mt-3"
-            data={posts}
-            contentContainerStyle={{
-              gap: 26,
-            }}
+          <FlatList            
+            data={posts}            
             renderItem={({ item}) => (
               <Card post={item}  />
             )}
             keyExtractor={(item) => item._id}
+            numColumns={2}
+            scrollEnabled={false}
+            className="mb-4 mt-3"
+            contentContainerStyle={{
+              gap: 20,
+              justifyContent:'flex-start',
+              paddingRight:5,
+              marginBottom:10
+            }}
             ItemSeparatorComponent={() => <View className="w-4" />}
           />
         </View>
