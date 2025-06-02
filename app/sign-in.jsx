@@ -5,19 +5,25 @@ import React from 'react'
 import { useLocalCredentials } from '@clerk/clerk-expo/local-credentials'
 
 export default function Page() {
+  const { isSignedIn } = useAuth()
   const { signIn, setActive, isLoaded } = useSignIn()
   const { hasCredentials, setCredentials, authenticate,userOwnsCredentials, clearCredentials ,biometricType } = useLocalCredentials()
-  console.log(hasCredentials);
   const router = useRouter()
-
-  const {isSignedIn,sessionId} = useAuth()
   const {session} = useSession()
-  console.log(session);
+  const [emailAddress, setEmailAddress] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  
+  if (isSignedIn) {
+      console.log("Already signed in");
+      return <Redirect href='/'/>
+  }
+  console.log(hasCredentials,"cred");
+
+  
+  console.log(session,"Hi");
         
     // console.log(isSignedIn);
 
-  const [emailAddress, setEmailAddress] = React.useState('')
-  const [password, setPassword] = React.useState('')
 
   // Handle the submission of the sign-in form
   const onSignInPress = async (useLocal) => {
@@ -43,7 +49,7 @@ export default function Page() {
           })
         }
         await setActive({ session: signInAttempt.createdSessionId })
-        router.replace('/')
+        return <Redirect href='/'/>
       } else {
         // If the status isn't complete, check why. User might need to
         // complete further steps.
@@ -58,7 +64,7 @@ export default function Page() {
   }
 
   return (
-    <View className='flex-1 flex-col items-center bg-white'>
+    <View className='flex-1 flex-col items-center bg-[#FFC2D1]'>
       <View className='mt-5 px-5 flex flex-col items-start justify-center h-full w-[80%]'>
         <Text className='font-bold text-xl'>Welcome, back to Post Natal Care</Text>
         <Text className='font-semibold text-sm'>A haven to guide young mothers</Text>

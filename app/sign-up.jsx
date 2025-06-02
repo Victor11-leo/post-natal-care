@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { useSignUp } from '@clerk/clerk-expo'
+import { useAuth, useSignUp } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 
+
+
 export default function SignUpScreen() {
+  const { isSignedIn } = useAuth()
   const { isLoaded, signUp, setActive } = useSignUp()
   const router = useRouter()
 
@@ -12,6 +15,10 @@ export default function SignUpScreen() {
   const [password, setPassword] = React.useState('')
   const [pendingVerification, setPendingVerification] = React.useState(false)
   const [code, setCode] = React.useState('')
+  
+  if (isSignedIn) {
+      console.log("Already signed in");
+  }
 
   // Handle submission of sign-up form
   const onSignUpPress = async () => {
@@ -71,7 +78,7 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <View className='flex-1 h-screen  flex-col gap-2 items-center justify-center bg-white'>
+      <View className='flex-1 h-screen  flex-col gap-2 items-center justify-center bg-[#FFC2D1]'>
         <View className='mt-5 px-5 flex flex-col items-start justify-center  w-[80%]'>
           <Text className='font-bold text-xl'>You're almost there</Text>
           <Text className='font-semibold text-sm'>A haven to guide young mothers</Text>
