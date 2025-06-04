@@ -6,13 +6,25 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env":{
+        "EXPO_PUBLIC_CONVEX_URL":"https://hallowed-ram-347.convex.cloud",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY":"pk_test_ZXhvdGljLXBsYXR5cHVzLTg1LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_SUPABASE_URL":"https://smauuurtvfvxuxumbicr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtYXV1dXJ0dmZ2eHV4dW1iaWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMzQ5NTEsImV4cCI6MjA2MzkxMDk1MX0.a-CfgbVD5L3SGEZwSRGSU4AHBLmpzzEe9UJJYAZLwJE"
+      }
     },
     "preview": {
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env":{
+        "EXPO_PUBLIC_CONVEX_URL":"https://hallowed-ram-347.convex.cloud",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY":"pk_test_ZXhvdGljLXBsYXR5cHVzLTg1LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_SUPABASE_URL":"https://smauuurtvfvxuxumbicr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtYXV1dXJ0dmZ2eHV4dW1iaWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMzQ5NTEsImV4cCI6MjA2MzkxMDk1MX0.a-CfgbVD5L3SGEZwSRGSU4AHBLmpzzEe9UJJYAZLwJE"
+      }
     }
   },
   "submit": {
