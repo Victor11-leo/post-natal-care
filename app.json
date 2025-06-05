@@ -17,6 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": [
+        "android.permission.INTERNET",
         "android.permission.USE_BIOMETRIC",
         "android.permission.USE_FINGERPRINT"
       ],
