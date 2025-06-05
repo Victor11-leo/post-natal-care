@@ -7,7 +7,8 @@
     "development": {
       "developmentClient": true,
       "android":{
-        "buildType":"apk"
+        "buildType":"apk",
+        "workflow":"managed"
       },
       "distribution": "internal",
       "env":{
@@ -24,7 +25,8 @@
     "production": {
       "autoIncrement": true,
       "android":{
-        "buildType":"apk"
+        "buildType":"apk",
+        "workflow":"managed"
       },
       "env":{
         "LIGHTNINGCSS_FORCE_JS_IMPLEMENTATION": "1",
